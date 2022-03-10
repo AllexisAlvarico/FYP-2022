@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class DeviceCamera : MonoBehaviour
 {
+
+    static WebCamTexture frontCam;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+        if (frontCam == null)
+            frontCam = new WebCamTexture();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GetComponent<Renderer>().material.mainTexture = frontCam;
+
+        if (!frontCam.isPlaying)
+            frontCam.Play();
     }
 }
