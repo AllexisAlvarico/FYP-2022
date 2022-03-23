@@ -10,6 +10,7 @@ public class Canvas : MonoBehaviour
     public Text display;
     public bool isOff;
     public bool isConn;
+    string command;
 
 
     // Start is called before the first frame update
@@ -18,22 +19,36 @@ public class Canvas : MonoBehaviour
         isOff = false;
         isConn = true;
     }
+
+    void Update()
+    {
+        
+    }
     public void onClick()
     {
         if (isConn)
+        {
             TCPListener.GetComponent<RaspberryCon>().closeSocket();
+            display.text = "on";
+        }
         else
+        {
             TCPListener.GetComponent<RaspberryCon>().setupSocket();
+            display.text = "off";
+        }
         isConn = !isConn;
         Debug.Log("Button click");
     }
 
     public void toggle()
     {
-        string command = "on";
-        if (isOff) command = "off";
+        command = "on";
+        if (isOff)
+            command = "off";
+      
         TCPListener.GetComponent<RaspberryCon>().writeSocket(command);
         isOff = !isOff;
     }
+    
 
 }

@@ -48,7 +48,7 @@ public class RaspberryCon : MonoBehaviour
             tcp_client = new TcpClient();
 
             IPAddress iPAddress = Dns.GetHostEntry(host).AddressList[0];
-            IPEndPoint iPEndPoint = new IPEndPoint(iPAddress, 8000);
+            IPEndPoint iPEndPoint = new IPEndPoint(iPAddress, port);
             tcp_client.Connect(iPEndPoint);
 
             net_stream = tcp_client.GetStream();
