@@ -14,7 +14,7 @@ public class RaspberryCon : MonoBehaviour
 
     internal bool socket_ready = false;
     internal string input_buffer = "";
-    public UnityEngine.UI.Text test;
+    UnityEngine.UI.Text test;
     TcpClient tcp_client;
     NetworkStream net_stream;
 
@@ -24,14 +24,14 @@ public class RaspberryCon : MonoBehaviour
 
     private void Start()
     {
-        test = GameObject.Find("Test").GetComponent<UnityEngine.UI.Text>();
+        test = GameObject.Find("InputField").GetComponent<UnityEngine.UI.Text>();
         setupSocket();
     }
 
     private void Update()
     {
         string received_data = readSocket();
-        Debug.Log(" received:" + received_data);
+//        Debug.Log(" received:" + received_data);
         test.text = received_data;
     }
 
