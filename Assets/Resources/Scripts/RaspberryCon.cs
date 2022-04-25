@@ -81,7 +81,6 @@ public class RaspberryCon : MonoBehaviour
 
         if (net_stream.DataAvailable)
             return socket_reader.ReadLine().ToString();
-
         return "";
     }
 

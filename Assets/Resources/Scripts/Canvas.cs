@@ -34,22 +34,19 @@ public class Canvas : MonoBehaviour
         Debug.Log(address);
         Screen.gameObject.SetActive(true);
         Screen.GetComponent<StreamTexture>().setAddress(address);
-        
 
         if (isConn)
-            {
-                TCPListener.GetComponent<RaspberryCon>().closeSocket();
-                display.text = "on";
-            }
-            else
-            {
-                TCPListener.GetComponent<RaspberryCon>().setupSocket();
-                display.text = "off";
-            }
-            isConn = !isConn;
-            Debug.Log("Button click");
-
-        
+        {
+            TCPListener.GetComponent<RaspberryCon>().closeSocket();
+            display.text = "on";
+        }
+        else
+        {
+            TCPListener.GetComponent<RaspberryCon>().setupSocket();
+            display.text = "off";
+        }
+        isConn = !isConn;
+        Debug.Log("Button click");
     }
 
     public void toggle()
