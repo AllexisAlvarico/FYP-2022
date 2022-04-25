@@ -11,10 +11,10 @@ public class RaspberryCon : MonoBehaviour
 
     public string host;
     public int port;
+    public bool conn { get; set; }
 
     internal bool socket_ready = false;
     internal string input_buffer = "";
-    UnityEngine.UI.Text test;
     TcpClient tcp_client;
     NetworkStream net_stream;
 
@@ -24,15 +24,13 @@ public class RaspberryCon : MonoBehaviour
 
     private void Start()
     {
-        test = GameObject.Find("InputField").GetComponent<UnityEngine.UI.Text>();
         setupSocket();
     }
 
     private void Update()
     {
         string received_data = readSocket();
-//        Debug.Log(" received:" + received_data);
-        test.text = received_data;
+        Debug.Log(" received:" + received_data);
     }
 
     private void OnApplicationQuit()
@@ -56,10 +54,11 @@ public class RaspberryCon : MonoBehaviour
             socket_reader = new StreamReader(net_stream);
 
             socket_ready = true;
-
+            conn = true;
         }
         catch (Exception e)
         {
+            conn = false;
             Debug.Log("Socket Error " + e);
         }
     }
@@ -94,4 +93,6 @@ public class RaspberryCon : MonoBehaviour
         tcp_client.Close();
         socket_ready = false;
     }
+
+
 }
